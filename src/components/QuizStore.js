@@ -82,6 +82,28 @@ export const useQuizStore = create((set, get) => ({
   // Quiz countdown timer
   setTimeRemaining: (time) => set({ timeRemaining: time }),
 
+  completeQuiz: () => {
+    const state = get();
+    const missedQuestions = state.questions.filter(q => !q.isAnswered || !q.isCorrect);
+    
+    set({
+      isQuizActive: false,
+      quizCompleted: true,
+      correctionQuestions: missedQuestions,
+    });
+  },
+
+  startCorrection: (questions) => set({
+    correctionQuestions: questions,
+    currentQuestionIndex: 0,
+    isQuizActive: true,
+    correctionRounds: get().correctionRounds + 1,
+  }),
+
+  completeCorrection: () => set({
+    isQuizActive: false,
+  }),
+
   updateCorrectionQuestion: (originalIndex, userAnswer, isCorrect) =>
     set((state) => {
       const updatedCorrections = state.correctionQuestions.map((q) =>
