@@ -4,6 +4,7 @@ import Settings from './components/Settings';
 import Quiz from './components/Quiz';
 import Correction from './components/Correction';
 import Results from './components/Results';
+import LeaderBoard from './components/LeaderBoard';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/correction" element={<Correction/>} />
           <Route path="/results" element={<Results/>} />
+          <Route path="/leaderboard" element={<LeaderBoard />} />
         </Routes>
       </div>
     </Router>
