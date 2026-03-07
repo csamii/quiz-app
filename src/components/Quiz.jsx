@@ -222,7 +222,7 @@ export default function Quiz() {
                   transition={{ delay: 0.3 }}
                   className="flex items-center space-x-3"
                 >
-                  <CardTitle className="text-lg">
+                  <CardTitle className="text-lg font-bold">
                     {currentQuestion.question}
                   </CardTitle>
                 </motion.div>
