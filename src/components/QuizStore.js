@@ -70,5 +70,25 @@ export const useQuizStore = create((set, get) => ({
     });
   },
 
+  // Get next question 
+  nextQuestion: () => {
+    const state = get();
+    set({
+      currentQuestionIndex: state.currentQuestionIndex + 1,
+      timeRemaining: 60,
+    });
+  },
 
+  // Quiz countdown timer
+  setTimeRemaining: (time) => set({ timeRemaining: time }),
+
+  updateCorrectionQuestion: (originalIndex, userAnswer, isCorrect) =>
+    set((state) => {
+      const updatedCorrections = state.correctionQuestions.map((q) =>
+        q.originalIndex === originalIndex
+          ? { ...q, userAnswer, isCorrect, isAnswered: true }
+          : q
+      );
+      return { correctionQuestions: updatedCorrections };
+  }),
 }))
